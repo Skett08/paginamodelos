@@ -1,0 +1,217 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #99b4ff;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    text-align: center;
+    background: rgb(245, 245, 245);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgb(115, 220, 145);
+    width: 100%;
+    max-width: 1200px;
+    min-height: 80vh;
+}
+
+/* Estilos de titulo dinamico */
+h1 {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: transparent;
+    background: linear-gradient(120deg, #1a237e, #4b73ec);
+    -webkit-background-clip: text; /* Texto con gradiente */
+    background-clip: text;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+    padding: 10px 20px;
+    margin-top: 30px;
+    margin-bottom: 10px;
+    animation: glow 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from {
+        text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #4b73ec, 0 0 20px #4b73ec;
+    }
+    to {
+        text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #4b73ec, 0 0 40px #4b73ec;
+    }
+}
+
+h1::after {
+    content: '';
+    display: block;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: linear-gradient(90deg, #4b73ec, #0056b3);
+    border-radius: 1.5px;
+}
+
+p {
+    font-family: 'Poppins', Arial, sans-serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 30px;
+    padding: 0 10px;
+}
+
+/* Estilos de botones */
+.boton-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 15px;
+    margin: 20px auto;
+    max-width: 800px;
+    justify-content: center;
+}
+
+.btn {
+    background: linear-gradient(135deg, #4b73ec, #4b73ec);
+    color: #ffffff;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px 25px; /* Reduje un poco el padding para que no sean excesivos */
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 10px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 10px rgb(28, 167, 49);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.2);
+    transition: left 0.4s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.btn:hover {
+    background: linear-gradient(135deg, #0056b3, #003f80);
+    transform: scale(1.05);
+    box-shadow: 0px 6px 15px rgba(0, 123, 255, 0.6);
+}
+
+.btn:active {
+    transform: scale(0.95);
+    box-shadow: 0px 2px 5px rgba(0, 123, 255, 0.3);
+}
+
+@media (max-width: 768px) {
+    .boton-container {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ESTILOS DE LA VENTANA MODAL */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Fondo oscuro semitransparente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Siempre encima de todo */
+    backdrop-filter: blur(2px);
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 600px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    animation: slideDown 0.3s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-footer {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+
+/* Estilos para la Tabla Generada */
+table.cpt-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+table.cpt-table th, table.cpt-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+table.cpt-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+table.cpt-table input {
+    width: 60px;
+    padding: 5px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
