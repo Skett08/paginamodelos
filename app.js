@@ -337,18 +337,27 @@ function crearNodo() {
     let id = prompt("Ingresa un ID único para el nodo (Ej: L):", idSugerido);
     if (!id) return;
     id = id.trim();
+    
+    // Validación de ID duplicado
     if (sistema.nodos[id]) {
         alert("¡Error! Ya existe un nodo con ese ID. Intenta con otro.");
         return;
     }
 
+    // 1. Agregar a la lógica matemática
     sistema.agregarNodo(id, nombre);    
+    
+    // 2. Agregar al grafo visual
     nodesDataSet.add({
         id: id,
         label: nombre + `\n(${id})`
     });
 
     agregarLog(`Nodo creado: ${nombre} (${id})`);
+
+    if (modoActual === "RB") {
+        actualizarSelectoresInferencia();
+    }
 }
 
 function conectarNodos() {
