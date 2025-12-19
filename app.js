@@ -80,7 +80,7 @@ function cambiarModo(nuevoModo) {
     edgesDataSet.clear();
     
     // Cambio entre logicas y actualizacion de interfaces
-    if (modoActual === "RB") {
+        if (modoActual === "RB") {
         sistema = new RedBayesiana();
         document.getElementById('ejemplosCarga').innerHTML = `
             <option value="">-- Cargar Ejemplo RB --</option>
@@ -89,16 +89,28 @@ function cambiarModo(nuevoModo) {
             <option value="fallas">3. Diagnóstico de Fallas</option>
             <option value="clima">4. Predicción Climática</option>
         `;
-        // Mouestra el panel de inferencia Bayesiana
-        document.querySelector('h3:nth-of-type(2)').style.display = 'block';
-        document.getElementById('selectorQuery').parentElement.style.display = 'block';
-        // Muestra el panel Bayesiano, oculta Markov
-        document.getElementById('panelInferenciaBayes').style.display = 'block';
-        document.getElementById('panelMarkov').style.display = 'none';
+        
+        // Muestra el panel de inferencia Bayesiana (CONTENEDOR PADRE)
+        const panelInferencia = document.querySelector('h3:nth-of-type(2)').parentElement;
+        panelInferencia.style.display = 'block';
+        
+        // Muestra todos los elementos del panel de inferencia
         document.querySelector('h3:nth-of-type(2)').style.display = 'block';
         document.getElementById('selectorQuery').style.display = 'block';
         document.getElementById('contenedorEvidencia').style.display = 'block';
         document.querySelector('.btn[onclick="ejecutarInferencia()"]').style.display = 'block';
+        
+        // Oculta los otros paneles
+        document.getElementById('panelMarkov').style.display = 'none';
+        document.getElementById('panelHMM').style.display = 'none';
+        
+        // Limpia y prepara el resultado
+        document.getElementById('resultadoOutput').style.display = 'none';
+        
+        // Inicializa los selectores de inferencia
+        actualizarSelectoresInferencia();
+
+        //BUG CORREGIDO
     } 
     else if (modoActual === "CM") { // Usamos Cadena de Markov
         sistema = new CadenaMarkov();
